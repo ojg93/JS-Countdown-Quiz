@@ -20,8 +20,22 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 }
+
+.info_box.exit{
+    z-index: 5;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.info_box.activateInfo,
+.quiz_box.activateQuiz{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 /* start Quiz Button Styling */
 .start_btn button{
     font-size: 25px;
@@ -92,12 +106,12 @@ body{
 }
 
 .buttons button.restart{
-    color: blue;
+    color: whitesmoke;
     border-color: blue;
 }
 
 .buttons button.quit{
-    color: blue;
+    color: whitesmoke;
     border-color: blue;
 }
 
@@ -135,8 +149,8 @@ body{
     justify-content: space-between;
     width: 145px;
     height: 45px;
-    background: gray;
-    border: 1px solid gray;
+    background: lightblue;
+    border: 1px solid whitesmoke;
     border-radius: 5px;
     padding: 0 8px;
 
@@ -154,10 +168,10 @@ body{
 .quiz_box header .timer .timer_sec{
     font-size: 18px;
     font-weight: 500px;
-    background: lightgray;
+    background: whitesmoke;
     height: 30px;
     width: 45px;
-    color: whitesmoke;
+    color: blue;
     text-align: center;
     line-height: 30px;
     border-radius: 5px;
@@ -203,6 +217,23 @@ section .option_list .option:hover{
     border-color: lightblue;
 }
 
+.option_list .option.correct{
+    color: green;
+    background: whitesmoke;
+    border-color: whitesmoke;
+}
+
+.option_list .option.incorrect{
+    color: red;
+    background: whitesmoke;
+    border-color: whitesmoke ;
+}
+
+.option_list .option.disabled{
+    pointer-events: none;
+}
+
+
 .quiz_box footer{
     height: 60px;
     width: 100%;
@@ -243,7 +274,7 @@ footer .next_btn{
 }
 
 footer .next_btn:hover{
-    background: lightblue;
+    background: blue;
     ;
 }
 
