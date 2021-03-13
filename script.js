@@ -25,19 +25,25 @@ start_btn.onclick = () =>{
     quiz_box.classList.add("activateQuiz"); //shows the quiz box
     showQuestions(0);
     queCounter(1);
-    startTimer(15);
+    startTimer(45);
 }
 
 
 let que_count = 0;
 let que_numb = 1;
 let counter;
-let timerValue = 15
+let timerValue = 0;
+let userScore = 0;
 
 const next_btn = quiz_box.querySelector(".next_btn");
 const result_box = document.querySelector (".result_box");
 const restart_quiz = result_box.querySelector (".buttons restart");
 const quit_quiz = result_box.querySelector ( ".buttons .quit")
+
+
+quit_quiz.onclick = function (){
+    window.location.reload();
+}
 
 
 // If next button clicked
@@ -47,8 +53,8 @@ next_btn.onclick = ()=>{
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
-        clearInterval(counter)
-        startTimer(timerValue);
+        // clearInterval(counter)
+        // startTimer(timerValue);
     }else{
         console.log("Questions Completed");
         showResultBox();
@@ -71,16 +77,19 @@ function showQuestions(index){
     }
 }
     function optionSelected(answer){
-        clearInterval(counter)
+        // clearInterval(counter)
         let userAns = answer.textContent;
         let correctAns = questions[que_count].answer;
         let allOptions = option_list.children.length;
         if (userAns === correctAns){
+            userScore += 1;
+            console.log(userScore);
             answer.classList.add("correct");
             console.log("correctAns");
         }else{
             answer.classList.add("incorrect");
-             console.log("wrong");    
+            console.log("wrong");
+            
 
         }
     
@@ -93,9 +102,24 @@ for (let i = 0; i < allOptions; i++) {
 }
 
 function showResultBox(){
-    info_box.classList.remove("activateInfo"); 
-    quiz_box.classList.remove("activateQuiz");
-    result_box.classList.add("activateResult");  
+    info_box.classList.remove("activateInfo"); //hides info box
+    quiz_box.classList.remove("activateQuiz"); //hides quiz box 
+    result_box.classList.add("activateResult"); //shows result box
+    const scoreText =  result_box.querySelector(".score_text")
+    if(userScore > 3){
+        let scoreTag = '<span>and congrats!, You got <p>' + userScore  + '</p> out of<p>' + questions.length + '</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+    else if(userScore > 1){
+        let scoreTag = '<span>and nice, You got only <p>' + userScore  + '</p> out of<p>' + questions.length + '</p></span>';
+        scoreText.innerHTML = scoreTag   
+    }
+
+    else{
+        let scoreTag = '<span>and sorry, You got only <p>' + userScore  + '</p> out of<p>' + questions.length + '</p></span>';
+        scoreText.innerHTML = scoreTag   
+    }
+
 };
 
 function startTimer(time){
@@ -106,6 +130,7 @@ function startTimer(time){
         if(time < 0){
             clearInterval(counter);
             timeCount.textContent = "00";
+        
 
         }
     }

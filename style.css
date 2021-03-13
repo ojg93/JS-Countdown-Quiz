@@ -30,7 +30,8 @@ body{
 }
 
 .info_box.activateInfo,
-.quiz_box.activateQuiz{
+.quiz_box.activateQuiz,
+.result_box.activateResult{    
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
@@ -321,6 +322,7 @@ footer .next_btn:hover{
 .result_box .buttons button{
     margin: 0 10px;
     height: 40px;
+    background: blue;
     padding: 0 20px;
     border: none;
     outline: none;
